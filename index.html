@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html> 
+<head>
+  <!-- Configurações -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Madison Versalit</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+ background-color: #7a4006e3;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: wheat;
+  
+}
+
+html {
+  font-family: inter, sans-serif;
+  font-weight: 500;
+}
+
+/* LOGO */
+.logo {
+  width: 182px;
+  height: auto;
+  margin: -50px;
+  margin-left: -20px;
+  margin-top: -10px;
+}
+
+/* NAVBAR */
+.nav {
+  max-width: 1120px;
+  margin: auto;
+  padding: 1.5rem 2rem;
+  align-items: center;
+}
+
+.login,
+.registre-se,
+a {
+  text-decoration: none;
+  font-weight: 500;
+  color: white;
+  
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.menu-central ul,
+.menu-direito ul {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.651);
+  
+}
+
+hr {
+  margin: -2% auto 10px auto;
+  width: 100%;
+  border: 1px solid  #cfaf4548 ;
+}
+
+/* HERO */
+.hero {
+  max-width: 1120px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 1rem 2rem;
+  margin: auto;
+}
+
+.hero-conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.text-base {
+  font-size: 19px;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.4;
+  margin-left: 40px;
+  margin-top: 50%;
+}
+
+.textsetor1, .textsetor2, .textsetor3 {
+  font-family: Arial;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 20px;
+}
+
+/* PRODUTOS */
+.clotheswoman, .clothesman, .clotheskids {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 50px auto;
+  max-width: 1200px;
+}
+
+.produto, .produto2, .produto3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 260px;
+  background-color:#F5F5DC;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.produto img, .produto2 img, .produto3 img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.produto h5, .produto2 h5, .produto3 h5 {
+  text-align: center;
+  margin: 15px 0;
+  color: #6F4E37;
+  font-size: 15px;
+}
+
+.produto button, .produto2 button, .produto3 button {
+  padding: 8px 12px;
+  background-color: #612e09d0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.produto button:hover, .produto2 button:hover, .produto3 button:hover {
+  background-color: #a1663bd0;
+  border: 2px solid rgba(255, 255, 255, .2);
+  color: #fff;
+}
+.topo{
+    background-color: rgba(2, 155, 2, 0.85);
+  border: 2px solid rgba(255, 255, 255, .2);
+  color: #fff;
+  
+}
+.topo:hover {
+  background-color: rgba(5, 255, 5, 0.774);
+  border: 2px solid rgba(255, 255, 255, .2);
+  color: #fff;
+  transition: 0.5s;
+}
+.valores {
+  color: #6F4E37;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: italic;
+  margin-top: -6%;
+}
+.gif {
+  width: 590px;
+  height: auto;
+  margin-top: 60px;
+  line-height: normal;
+  animation-iteration-count: infinite;
+}
+.btncolecao {
+  padding: 10px 20px;
+  background-color: #cfaf45 ;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  transition: 0.3s;
+  margin-left: 15px;
+}
+.btncolecao:hover {
+  background-color: #7235099c;
+  border: 2px solid rgba(255, 255, 255, .2);
+  color: #fec27d;
+}
+/* RESPONSIVIDADE MOBILE */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+    overflow-x: hidden;
+  }
+
+  /* Navbar empilhada */
+  nav {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 0;
+  }
+
+  /* Logo menor e centralizada */
+  .logo {
+    width: 156px;     /* tamanho fixo mais controlado */
+    max-width: 160px; 
+    margin: 0 auto 10px auto; 
+    display: block;
+
+
+  }
+
+  /* Menu centralizado e em coluna */
+  .menu-central ul,
+  .menu-direito ul {
+    flex-direction: row;
+    align-items: center;
+    gap: 13px;
+    padding: 0;
+    margin: -5px ;
+
+  }
+
+  .menu-central ul li a,
+  .menu-direito ul li a {
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+  }
+
+  /* Ajustando hero */
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    margin-top: 10px;
+  }
+
+  .hero-conteudo {
+    margin: 0;
+    align-items: center;
+  }
+
+  .text-base {
+    font-size: 14px;
+    margin: 20px 0 0 0; /* centraliza melhor no mobile */
+    text-align: center;
+  }
+
+  .textsetor1, .textsetor2, .textsetor3 {
+    margin: 15px 0;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  /* Produtos em coluna */
+  .clotheswoman, .clothesman, .clotheskids {
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .produto, .produto2, .produto3 {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .produto h5, .produto2 h5, .produto3 h5 {
+    font-size: 14px;
+  }
+  hr{
+  visibility: hidden; /*tira a linha*/
+  }
+}
+
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <span><img src="imagens/logo sem fundo.png" class="logo"/></span> <!--- Logo -->
+
+    <div class="menu-central">	
+      <ul>               
+        <li><a class="home" href="index.html">Home</a></li>
+        <li><a class="novidades" href="https://www.instagram.com/shopiify_fc?igsh=NW40Ynh3eHRyMmdl">Novidades</a></li>
+        <li><a href="registro.html">Registro</a></li>
+      </ul>
+    </div>
+    
+    <div class="menu-direito">
+      <ul>
+        <li id="loginBtn"><a href="index2.html" target="_blank" class="login">Login</a></li>
+        <li id="registerBtn"><a href="index2.html" target="_blank" class="registre-se">Registre-se</a></li>
+       <li id="userInfo" style="display: none;">
+        Olá, <span id="username"></span>!
+        <a href="#" onclick="logout()">Sairㅤㅤㅤㅤㅤㅤ</a>
+       
+    </li>
+      </ul>
+    </div> 
+  </nav>
+
+  <hr>
+  
+
+</header>
+
+<section class="hero">
+  <header class="hero-conteudo">			
+    <p class="text-base">A moda que você procura,<br> O preço que você sonha.<br></p>  
+    <button type="button" class="btncolecao">Ver coleção</button>
+    
+  </header> 
+  <img src="video/Dark Green Waves All Business Linktree Background.gif" class="gif">
+
+</video>
+</section>
+<!-- PRODUTOS FEMININOS -->
+<section class="clotheswoman"> 	
+  <div class="produto" data-nome="Vestido curto azul" data-preco="79.90">
+    <img src="imagens/feminino/bluedress.jpg" alt="bluedress">
+    <h5>Vestido curto azul, tecido leve e acinturado</h5>
+    <h6 class="valores">Valor: R$ 79,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Vestido longo verde" data-preco="129.90">
+    <img src="imagens/feminino/greendress.jpg" alt="greendress">
+    <h5>Vestido longo verde, tecido leve e acinturado com fenda</h5>
+     <h6 class="valores">Valor: R$ 129,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Vestido longo branco" data-preco="39.90">
+    <img src="imagens/feminino/whitedress.jpg" alt="whitedress">
+    <h5>Vestido longo branco, acinturado com decote nas costas</h5>
+    <h6 class="valores">Valor: R$ 39,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Vestido longo amarelo" data-preco="108.99">
+    <img src="imagens/feminino/yellowdress.jpg" alt="yellowdress">
+    <h5>Vestido longo amarelo, tecido leve com manga curta</h5>
+    <h6 class="valores">Valor: R$ 108,99</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+</section>
+
+<!-- PRODUTOS MASCULINOS -->
+<section class="clothesman">
+  <div class="produto" data-nome="Conjunto masculino bege" data-preco="89.90">
+    <img src="imagens/masculino/begemasculino.jpg" alt="begemasculino">
+    <h5>Conjunto masculino, blusa branca e calça bege</h5>
+    <h6 class="valores">Valor: R$ 89,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Kit masculino verde" data-preco="119.90">
+    <img src="imagens/masculino/masculinokit.jpg" alt="masculinokit">
+    <h5>Blusa branca, calça verde e bolsa</h5>
+    <h6 class="valores">Valor: R$ 119,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Conjunto streetwear branco" data-preco="139.90">
+    <img src="imagens/masculino/streetwear.jpg" alt="streetwear">
+    <h5>Conjunto masculino inverno, moletom branco e calça cinza</h5>
+    <h6 class="valores">Valor: R$ 139,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Conjunto streetwear marrom" data-preco="99.90">
+    <img src="imagens/masculino/streetwear2.jpg" alt="streetwear2">
+    <h5>Conjunto masculino streetwear, blusa marrom e short bege</h5>
+    <h6 class="valores">Valor: R$ 99,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+</section>
+
+<!-- PRODUTOS KIDS -->
+<section class="clotheskids">
+  <div class="produto" data-nome="Conjunto bege kids cropped" data-preco="59.90">
+    <img src="imagens/kids/begegirl.jpg" alt="begegirl">
+    <h5>Conjunto bege kids, calça jeans e cropped moletom</h5>
+    <h6 class="valores">Valor: R$ 59,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Conjunto bege kids short" data-preco="49.90">
+    <img src="imagens/kids/begekids.jpg" alt="begekids">
+    <h5>Conjunto bege kids, short bege e blusa de gola</h5>
+    <h6 class="valores">Valor: R$ 49,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Conjunto verde kids" data-preco="69.90">
+    <img src="imagens/kids/boygreenlook.jpg" alt="boygreenlook">
+    <h5>Conjunto verde kids, calça jeans verde e blusa quadriculada</h5>
+    <h6 class="valores">Valor: R$ 69,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Vestido verde kids" data-preco="54.90">
+    <img src="imagens/kids/greengirl.jpg" alt="greengirl">
+    <h5>Vestido verde kids com bolsa marrom</h5>
+    <h6 class="valores">Valor: R$ 54,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+</section>
+ <a href="index.html" class="topo">Voltar ao topo</a>
+<script>
+  document.querySelectorAll(".btnComprar").forEach(button => {
+    button.addEventListener("click", function() {
+      // Verifica se está logado
+      const logado = localStorage.getItem("logado");
+
+      if (logado !== "true") {
+        alert("Você precisa estar logado para comprar!");
+        window.location.href = "index2.html"; // redireciona para login
+        return;
+      }
+
+      // Se estiver logado, pega o produto
+      const produto = this.parentElement;
+      const nome = produto.getAttribute("data-nome");
+      const preco = parseFloat(produto.getAttribute("data-preco"));
+
+      let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+      carrinho.push({ nome: nome, preco: preco });
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+      alert(nome + " foi adicionado ao carrinho!");
+      window.location.href = "carrinho.html";
+    });
+  });
+  // Verifica se está logado
+  const logado = localStorage.getItem("logado");
+  const nomeUsuario = localStorage.getItem("nomeUsuario");
+
+  if (logado === "true" && nomeUsuario) {
+    document.getElementById("loginBtn").style.display = "none";
+    document.getElementById("registerBtn").style.display = "none";
+    document.getElementById("userInfo").style.display = "inline-block";
+    document.getElementById("username").textContent = nomeUsuario;
+  }
+  function logout() {
+  localStorage.removeItem("logado");
+  localStorage.removeItem("nomeUsuario");
+}
+
+</script>
+
+</body>
+</html>

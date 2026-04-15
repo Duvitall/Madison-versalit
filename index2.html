@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <title>Login</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    min-height: 100vh;
+    background: #612e09d0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 20px;
+}
+.logo-login {
+  display: block;
+  margin: 20px auto;
+  max-width: 250px;
+  height: auto;
+  width: 15%;
+}
+.container, .container2 {
+    width: 100%;
+    max-width: 420px;
+    background-color: #ffffff0c;
+    border: 2px solid  #612e09d0 ;
+    border-radius: 10px;
+    color: #fff;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(0 ,0 ,0,.1);
+    margin-top: -20%;
+}
+.container h1, .container2 h1 {
+    font-size: 28px;
+    text-align: center;
+    text-shadow: 0 0 10px rgb(1, 43, 1);
+}
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+}
+.input-box input {
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+.input-box input::placeholder {
+    color: #cac5c5;
+}
+.input-box i {
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.remember-password {
+    display: flex;
+    justify-content: space-between;
+    margin: -10px 0 15px;
+    font-size: 14px;
+}
+.remember-password label input {
+    accent-color: #fff;
+    margin-right: 5px;
+}
+.remember-password a {
+    color: #fff;
+    text-decoration: none;
+}
+.remember-password a:hover {
+    text-decoration: underline;
+}
+.login {
+    width: 100%;
+    background-color:  #612e09d0;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px;
+    margin-top: 10px;
+    transition: 0.3s;
+    
+}
+.login:hover {
+    background-color:  #e9bfa260;
+    border: 2px solid #612e09c4;
+    color: #fff;
+}
+.register-link {
+    font-size: 14px;
+    text-align: center;
+    margin: 15px 0 5px;
+}
+.register-link a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+.register-link a:hover {
+    text-decoration: underline;
+}
+.promoção {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 20px auto;
+    text-align: center;
+}
+.cadastro {
+  text-align: center;
+}
+.Voltar{
+  position: fixed;      /* mantém fixo mesmo rolando a página */
+  bottom: 20px;         /* distância do fundo */
+  left: 20px;           /* distância da esquerda */
+  padding: 10px 20px;   /* tamanho do botão */
+  background-color:  #612e09d0; /* cor do fundo */
+  color: rgb(245, 242, 242);         /* cor do texto */
+  border: none;         /* tira borda padrão */
+  border-radius: 8px;   /* bordas arredondadas */
+  transition: 0.6s;
+   text-decoration: none;   /* tira o sublinhado do link */
+  }
+  .Voltar:hover{
+     background-color: rgba(133, 75, 0, 0.959);
+    border: 2px solid rgba(255, 255, 255, 0.308);
+    color: #fff;
+  }
+
+/* RESPONSIVIDADE */
+@media (max-width: 480px) {
+  .container, .container2 {
+    padding: 20px;
+  }
+  .logo-login {
+    max-width: 200px;
+  }
+  .input-box input {
+    font-size: 14px;
+  }
+}
+  </style>
+</head>
+<body>
+  <!-- Logo -->
+  <img src="imagens/logo sem fundo.png" class="logo-login"/> 
+  
+  <!-- Formulário de Login -->  
+  <form id="loginForm"> 
+    <main class="container">  
+      <h1>LOGIN</h1>
+      <div class="input-box">
+        <input placeholder="Email" type="email" id="usuario" required>
+        <i class="bx bxs-user"></i>
+      </div>
+      <div class="input-box">
+        <input placeholder="Senha" type="password" id="senha" required>
+        <i class="bx bxs-lock-alt"></i>
+      </div>
+      <div class="remember-password">
+       
+      </div> 
+      <button type="submit" class="login">Login</button> 
+      <div class="register-link">
+        Não tem uma conta? <a href="#" onclick="mostrarCadastro()">Registre-se</a> 
+      </div>
+    </main>
+  </form> 
+
+  <!-- Formulário de Cadastro -->  
+  <form id="cadastroForm" style="display: none;">
+    <main class="container2"> 
+      <h1 class="cadastro">CADASTRO</h1>
+      <div class="input-box">
+        <input placeholder="Nome" type="text" id="nomeCadastro" required>
+        <i class="bx bxs-user"></i>
+      </div>
+      <div class="input-box">
+        <input placeholder="Email" type="email" id="emailCadastro" required>
+        <i class="bx bxs-envelope"></i>
+      </div>
+      <div class="input-box">
+        <input placeholder="Senha" type="password" id="senhaCadastro" required>
+        <i class="bx bxs-lock-alt"></i>
+      </div>
+      <button type="submit" class="login">Cadastrar</button>
+      <div class="register-link">
+        Já tem conta? <a href="#" onclick="mostrarLogin()">Fazer login</a>
+      </div>
+    </main>
+  </form>
+  <a href="index.html" class="Voltar">Voltar</a>
+  <!-- Script -->
+  <script>
+    // Alternar telas
+    function mostrarCadastro(){
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("cadastroForm").style.display = "block";
+    }
+    function mostrarLogin(){
+      document.getElementById("cadastroForm").style.display = "none";
+      document.getElementById("loginForm").style.display = "block";
+    }
+
+    // Cadastro
+    document.getElementById("cadastroForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const nome = document.getElementById("nomeCadastro").value.trim();
+      const email = document.getElementById("emailCadastro").value.trim();
+      const senha = document.getElementById("senhaCadastro").value.trim();
+
+      if(nome === "" || email === "" || senha === ""){
+        alert("Preencha todos os campos!");
+        return;
+      }
+      if(senha.length < 6){
+        alert("A senha deve ter no mínimo 6 caracteres!");
+        return;
+      }
+
+      // Salva no localStorage
+      localStorage.setItem("nomeUsuario", nome);
+      localStorage.setItem("emailUsuario", email);
+      localStorage.setItem("senhaUsuario", senha);
+
+      alert("Cadastro realizado com sucesso! Agora faça login.");
+      mostrarLogin();
+    });
+
+    // Login
+    document.getElementById("loginForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const usuario = document.getElementById("usuario").value.trim();
+      const senha = document.getElementById("senha").value.trim();
+
+      const emailSalvo = localStorage.getItem("emailUsuario");
+      const senhaSalva = localStorage.getItem("senhaUsuario");
+
+      if(usuario === "" || senha === ""){
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      if(usuario === emailSalvo && senha === senhaSalva){
+        alert("Login realizado com sucesso!");
+        localStorage.setItem("logado", "true");
+        window.location.href = "index.html";
+        alert("bem vindo(a) " + usuario + "!" );
+      } else {
+        alert("Email ou senha incorretos!");
+      }
+    });
+  </script>
+</body>
+</html>

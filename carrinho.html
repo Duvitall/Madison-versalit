@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARRINHO</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+}
+        body {
+            background-color:#6F4E37;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; 
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding: 20px;
+                }
+    
+        .page-title {
+            background: transparent;
+            color: #fff;
+            font-size: 35px;
+            padding: 20px 0;
+            text-align: center;
+        }
+    .container{
+    width: 100%;
+    max-width: 420px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 10px;
+    color: #fff;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(0 ,0 ,0,.1);
+    margin-top: -7%;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+}
+.input-box input {
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+.input-box input::placeholder {
+    color: #cac5c5;
+}
+.input-box i {
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.comprar {
+    width: 100%;
+    background-color: #fff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    padding: 10px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+.comprar:hover {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    color: #fff;
+}
+.logo-login {
+  width: 300px;
+  height: auto;
+  
+}
+.quant{
+    padding: 20px 0 0;
+    font-size: 17px;
+}
+h4 {
+    padding: 8px 0 9px;
+    font-size: 20px;
+    color: rgb(43, 255, 0);
+}
+.Voltar{
+  position: fixed;      /* mantém fixo mesmo rolando a página */
+  bottom: 20px;         /* distância do fundo */
+  left: 20px;           /* distância da esquerda */
+  padding: 10px 20px;   /* tamanho do botão */
+   background-color: #612e09d0;/* cor do fundo */
+  color: rgb(245, 242, 242);         /* cor do texto */
+  border: none;         /* tira borda padrão */
+  border-radius: 8px;   /* bordas arredondadas */
+  transition: 0.6s;
+   text-decoration: none;   /* tira o sublinhado do link */
+  }
+  .Voltar:hover{
+  background-color: #a1663bd0;
+  border: 2px solid rgba(255, 255, 255, .2);
+  color: #fff;
+  }
+
+</style>
+</head>
+<body>
+<!-- Logo -->
+<img src="imagens/madisonversalite/Madison-removebg-preview.png" class="logo-login"/> 
+
+<main class="container">  
+  <h2>Seu Carrinho</h2>
+
+  <!-- Lista de produtos -->
+  <ul id="listaCarrinho"></ul>
+
+  <h3>Total: R$ <span id="total">0,00</span></h3>
+
+  <button id="finalizarCompra" class="comprar">Finalizar Compra</button>
+</main>
+    <a href="index.html" class="Voltar">Voltar</a>
+<script>
+  const listaCarrinho = document.getElementById("listaCarrinho");
+  const totalElement = document.getElementById("total");
+  const btnFinalizar = document.getElementById("finalizarCompra");
+
+  function carregarCarrinho() {
+    listaCarrinho.innerHTML = "";
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    let total = 0;
+
+    if (carrinho.length === 0) {
+      listaCarrinho.innerHTML = "<li>Seu carrinho está vazio!</li>";
+    } else {
+      carrinho.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          ${item.nome} - R$ ${item.preco.toFixed(2).replace(".", ",")}
+          <button class="remover" data-index="${index}">❌ Remover</button>
+        `;
+        listaCarrinho.appendChild(li);
+        total += item.preco;
+      });
+    }
+
+    totalElement.textContent = total.toFixed(2).replace(".", ",");
+  }
+
+  // evento para remover item
+  listaCarrinho.addEventListener("click", function(e) {
+    if (e.target.classList.contains("remover")) {
+      let index = e.target.getAttribute("data-index");
+      let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+      carrinho.splice(index, 1);
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+      carregarCarrinho();
+    }
+  });
+
+  // evento para finalizar compra
+  btnFinalizar.addEventListener("click", function() {
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    if (carrinho.length === 0) {
+      alert("Seu carrinho está vazio!");
+      return;
+    }
+
+    // pega o histórico salvo ou cria um novo
+    let historico = JSON.parse(localStorage.getItem("historico")) || [];
+
+    // adiciona os itens do carrinho ao histórico
+    historico.push({
+      data: new Date().toLocaleString("pt-BR"),
+      itens: carrinho
+    });
+
+    // salva o histórico atualizado
+    localStorage.setItem("historico", JSON.stringify(historico));
+
+    // limpa o carrinho
+    localStorage.removeItem("carrinho");
+
+    alert("Compra finalizada com sucesso!");
+    window.location.href = "registro.html"; // redireciona para a página de registro
+  });
+
+  carregarCarrinho();
+
+
+  // evento de finalizar compra
+  btnFinalizar.addEventListener("click", () => {
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    if (carrinho.length === 0) {
+      alert("Seu carrinho está vazio!");
+      return;
+    }
+
+    alert("🎉 Compra realizada com sucesso! Obrigado por comprar conosco.");
+    localStorage.removeItem("carrinho"); // limpa o carrinho
+
+    // redireciona para a tela inicial (altere 'index.html' para o nome certo da sua página inicial)
+    window.location.href = "index.html";
+  });
+
+  // carregar carrinho ao abrir página
+  carregarCarrinho();
+</script> 
+</body>
+</html>

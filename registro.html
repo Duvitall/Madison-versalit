@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Histórico de Compras</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color:#6F4E37;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #ffffff;
+    }
+   ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+.Voltar{
+  position: fixed;      /* mantém fixo mesmo rolando a página */
+  bottom: 20px;         /* distância do fundo */
+  left: 20px;           /* distância da esquerda */
+  padding: 10px 20px;   /* tamanho do botão */
+   background-color: #612e09d0;/* cor do fundo */
+  color: rgb(245, 242, 242);         /* cor do texto */
+  border: none;         /* tira borda padrão */
+  border-radius: 8px;   /* bordas arredondadas */
+  transition: 0.6s;
+   text-decoration: none;   /* tira o sublinhado do link */
+  }
+  .Voltar:hover{
+  background-color: #a1663bd0;
+  border: 2px solid rgba(255, 255, 255, .2);
+  color: #fff;
+  }
+
+  </style>
+</head>
+<body>
+ <h2>Histórico de Compras</h2>
+  <div id="historico"></div>
+  <a href="index.html" class="Voltar">Voltar</a>
+  <script>
+    let historico = JSON.parse(localStorage.getItem("historico")) || [];
+    let container = document.getElementById("historico");
+
+    if (historico.length === 0) {
+      let msg = document.createElement("p");
+      msg.textContent = "Você ainda não fez compras.";
+      container.appendChild(msg);
+    } else {
+      historico.forEach((compra, index) => {
+        // Cria a div que vai guardar essa compra
+        let div = document.createElement("div");
+
+        // Título da compra
+        let titulo = document.createElement("h3");
+        titulo.textContent = `Compra ${index + 1} - ${compra.data}`;
+        div.appendChild(titulo);
+
+        // Lista de itens
+        let lista = document.createElement("ul");
+
+        (compra.itens || []).forEach(item => {
+          let li = document.createElement("li");
+          li.textContent = `${item.nome} - ${item.preco.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+          lista.appendChild(li);
+        });
+
+        div.appendChild(lista);
+
+        // Adiciona a div no container
+        container.appendChild(div);
+      });
+    }
+  </script> 
+</body>
+</html>
