@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: #7a4006e3;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .logo-login {
+      width: 300px;
+      max-width: 80%;
+      height: auto;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 460px;
+      border: 2px solid rgba(255, 255, 255, .2);
+      border-radius: 10px;
+      padding: 30px;
+      margin-top: -30px;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+    }
+
+    ul {
+      list-style: none;
+      margin-bottom: 18px;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .18);
+    }
+
+    .remover {
+      border: 0;
+      border-radius: 6px;
+      background: #612e09d0;
+      color: #fff;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    .comprar {
+      width: 100%;
+      background-color: #fff;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #333;
+      font-weight: 600;
+      padding: 10px;
+      margin-top: 16px;
+      transition: 0.3s;
+    }
+
+    .comprar:hover {
+      background-color: transparent;
+      border: 2px solid rgba(255, 255, 255, .2);
+      color: #fff;
+    }
+
+    .Voltar {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #612e09d0;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <img src="imagens/madisonversalite/Madison-removebg-preview.png" class="logo-login" alt="Madison Versalit">
+
+  <main class="container">
+    <h2>Seu Carrinho</h2>
+    <ul id="listaCarrinho"></ul>
+    <h3>Total: R$ <span id="total">0,00</span></h3>
+    <button id="finalizarCompra" class="comprar">Finalizar Compra</button>
+  </main>
+
+  <a href="index.html" class="Voltar">Voltar</a>
+
+  <script>
+    const listaCarrinho = document.getElementById("listaCarrinho");
+    const totalElement = document.getElementById("total");
+    const finalizarCompra = document.getElementById("finalizarCompra");
+
+    function moeda(valor) {
+      return Number(valor || 0).toFixed(2).replace(".", ",");
+    }
+
+    function usuarioAtual() {
+      return {
+        id: localStorage.getItem("usuarioId") || "",
+        nome: localStorage.getItem("nomeUsuario") || "",
+        email: localStorage.getItem("usuarioEmail") || ""
+      };
+    }
+
+    function pegarCarrinho() {
+      return JSON.parse(localStorage.getItem("carrinho")) || [];
+    }
+
+    function salvarCarrinho(carrinho) {
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    }
+
+    function carregarCarrinho() {
+      const carrinho = pegarCarrinho();
+      let total = 0;
+
+      listaCarrinho.innerHTML = "";
+
+      if (carrinho.length === 0) {
+        listaCarrinho.innerHTML = "<li>Seu carrinho esta vazio!</li>";
+        totalElement.textContent = "0,00";
+        return;
+      }
+
+      carrinho.forEach((item, index) => {
+        const preco = Number(item.preco || 0);
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span>${item.nome} - R$ ${moeda(preco)}</span>
+          <button class="remover" data-index="${index}">Remover</button>
+        `;
+        listaCarrinho.appendChild(li);
+        total += preco;
+      });
+
+      totalElement.textContent = moeda(total);
+    }
+
+    async function enviarPedido(dados) {
+      const resposta = await fetch("finalizar_pedido.php?v=3", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados)
+      });
+      const texto = await resposta.text();
+      let json;
+
+      try {
+        json = JSON.parse(texto);
+      } catch (erro) {
+        throw new Error("Resposta invalida do servidor: " + texto.slice(0, 160));
+      }
+
+      if (!resposta.ok || json.ok === false) {
+        throw new Error(json.erro || "Nao foi possivel salvar o pedido.");
+      }
+
+      return json;
+    }
+
+    listaCarrinho.addEventListener("click", function(evento) {
+      if (!evento.target.classList.contains("remover")) {
+        return;
+      }
+
+      const carrinho = pegarCarrinho();
+      carrinho.splice(Number(evento.target.dataset.index), 1);
+      salvarCarrinho(carrinho);
+      carregarCarrinho();
+    });
+
+    finalizarCompra.addEventListener("click", async function() {
+      const carrinho = pegarCarrinho();
+
+      if (carrinho.length === 0) {
+        alert("Seu carrinho esta vazio!");
+        return;
+      }
+
+      try {
+        const pedido = await enviarPedido({
+          usuario: usuarioAtual(),
+          itens: carrinho
+        });
+
+        const historico = JSON.parse(localStorage.getItem("historico")) || [];
+        historico.push({
+          id: pedido.pedido_id,
+          data: new Date().toLocaleString("pt-BR"),
+          total: pedido.total,
+          itens: carrinho
+        });
+        localStorage.setItem("historico", JSON.stringify(historico));
+        localStorage.removeItem("carrinho");
+
+        alert("Pedido salvo com sucesso! Pedido #" + pedido.pedido_id);
+        window.location.href = "registro.html?v=3";
+      } catch (erro) {
+        alert("Erro ao finalizar pedido: " + erro.message);
+      }
+    });
+
+    carregarCarrinho();
+  </script>
+</body>
+</html>

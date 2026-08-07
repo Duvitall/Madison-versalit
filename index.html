@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html> 
+<head>
+  <!-- Configurações -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Madison Versalit</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/*configurações principais da página */
+* {
+  font-family: "Poppins", sans-serif; /*fontes principais*/ 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+ background-color: #7a4006e3; /*fundo da página*/
+  background-size: cover;
+  background-position: center; /*posição do fundo*/
+  background-repeat: no-repeat; /*não repetir a imagem de fundo*/
+  background-attachment: fixed; /*fixar a imagem de fundo*/
+  color: wheat;
+  
+}
+
+html {
+  font-family: inter, sans-serif;
+  font-weight: 500; /* peso da fonte */
+}
+
+/* LOGO */
+.logo {
+  width: 182px; /* tamanho fixo para a logo */
+  /*Ajustes para posição da logo */
+  height: auto;
+  margin: -50px;
+  margin-left: -20px;
+  margin-top: -10px;
+}
+
+/* NAVBAR */
+.nav {
+  max-width: 1120px;
+  margin: auto;
+  padding: 1.5rem 2rem;
+  align-items: center;
+}
+
+.login,
+.registre-se,
+a {
+  text-decoration: none;
+  font-weight: 500;
+  color: white;
+  
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+
+/* HERO */
+.hero {
+  max-width: 1120px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 1rem 2rem;
+  margin: auto;
+}
+
+.hero-conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.text-base {
+  font-size: 19px;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.4;
+  margin-left: 40px;
+  margin-top: 50%;
+}
+
+.textsetor1, .textsetor2, .textsetor3 {
+  font-family: Arial;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 20px;
+}
+
+/* PRODUTOS */
+.clotheswoman, .clothesman, .clotheskids {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 50px auto;
+  max-width: 1200px;
+}
+
+.produto, .produto2, .produto3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 260px;
+  background-color:#F5F5DC;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.produto img, .produto2 img, .produto3 img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.produto h5, .produto2 h5, .produto3 h5 {
+  text-align: center;
+  margin: 15px 0;
+  color: #6F4E37;
+  font-size: 15px;
+}
+
+.produto button, .produto2 button, .produto3 button {
+  padding: 8px 12px;
+  background-color: #612e09d0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.produto button:hover, .produto2 button:hover, .produto3 button:hover {
+  background-color: #a1663bd0;
+  border: 2px solid rgba(255, 255, 255, .2);
+  color: #fff;
+}
+.topo{
+    background-color: rgba(155, 84, 2, 0.85);
+  border: 2px solid rgba(255, 255, 255, .2);
+  color: #fff;
+  
+}
+.topo:hover {
+  background-color: rgba(83, 58, 20, 0.897);
+  border: 2px solid rgba(255, 255, 255, .2);
+  color: #fff;
+  transition: 0.5s;
+}
+.valores {
+  color: #6F4E37;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: italic;
+  margin-top: -6%;
+}
+.gif {
+  width: 590px;
+  height: auto;
+  margin-top: 60px;
+  line-height: normal;
+  animation-iteration-count: infinite;
+}
+.btncolecao {
+  padding: 10px 20px;
+  background-color: #cfaf45 ;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  transition: 0.3s;
+  margin-left: 15px;
+  text-align: center;
+}
+.btncolecao:hover {
+  background-color: #7235099c;
+  border: 2px solid rgba(255, 255, 255, .2);
+  color: #fec27d;
+}
+.chat-opener {
+  position: fixed;
+  right: 16px;
+  bottom: 20px;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  background: #1d1a21;                  /* cinza um pouco mais claro que #454545 */
+  color: #f2f2f2;                       /* texto cinza claro */
+  border: 1px solid #3a3a3a;            /* borda discreta mais escura */
+  box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+  border-radius: 6px;
+  padding: 5px 10px;
+  min-width: 108px;
+  height: 38px;
+  cursor: pointer;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+.chat-opener:hover {
+  opacity: 0.97;                    /* clareia só um pouco no hover */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+.chat-opener:focus {
+  outline: 2px solid rgba(207,175,69,0.45);
+  outline-offset: 2px;
+}
+
+/* ícone roxo em degradê */
+.chat-opener__icon {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.chat-opener__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transform: translateY(2px) scale(1.9);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.55))
+          drop-shadow(0 0 3px rgba(207,175,69,0.28));
+}
+
+.chat-opener__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* versão compacta para telas menores */
+@media (max-width: 480px) {
+  .chat-opener {
+    right: 10px;
+    bottom: 14px;
+    min-width: 95px;
+    height: 34px;
+    padding: 4px 8px;
+    font-size: 12px;
+    gap: 6px;
+  }
+  .chat-opener__icon {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+  }
+}
+/* CSS Document */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
+
+body {
+	background: #7a4006e3 ;
+	font-size:22px;
+	line-height: 32px;
+	color: #ffffff;
+	margin: 0;
+	padding: 0;
+	word-wrap:break-word !important;
+	font-family: 'Open Sans', sans-serif;
+	}
+
+h1 {
+	font-size: 60px;
+	text-align: center;
+	color: #FFF;
+}	
+
+h3 {
+	font-size: 30px;
+	line-height: 34px;
+	text-align: center;
+	color: #FFF;
+}
+
+h3 a {
+	color: #FFF;
+}
+
+a {
+	color: #FFF;
+}
+
+h1 {
+	margin-top: 100px;
+	text-align:center;
+	font-size:60px;
+	line-height: 70px;
+	font-family: 'Bree Serif', 'serif';
+	}
+
+#container {
+	margin: 0 auto;
+	max-width: 890px;
+}
+
+p {
+	text-align: center;
+}
+
+.toggle,
+[id^=drop] {
+	display: none;
+}
+
+nav { 
+	margin:0;
+	padding: 0;
+	background-color: #4d2f0244;
+}
+
+#logo {
+	display: block;
+	padding: 0 30px;
+	float: left;
+	font-size:20px;
+	line-height: 60px;
+}
+
+nav:after {
+	content:"";
+	display:table;
+	clear:both;
+}
+
+nav ul {
+	float: right;
+	padding:0;
+	margin:0;
+	list-style: none;
+	position: relative;
+	}
+	
+nav ul li {
+	margin: 0px;
+	display:inline-block;
+	float: left;
+	background-color:  #03020038;
+	}
+
+nav a {
+	display:block;
+	padding:14px 20px;	
+	color:#FFF;
+	font-size:17px;
+	text-decoration:none;
+}
+
+
+nav ul li ul li:hover { background:  #352402da; }
+
+nav a:hover { 
+	background-color:  #0302004d; 
+}
+
+nav ul ul {
+	display: none;
+	position: absolute; 
+	top: 60px; 
+}
+	
+nav ul li:hover > ul {
+	display:inherit;
+}
+	
+nav ul ul li {
+	width:170px;
+	float:none;
+	display:list-item;
+	position: relative;
+}
+
+nav ul ul ul li {
+	position: relative;
+	top:-60px;
+
+	left:170px; 
+}
+
+li > a:after { content:  ' +'; }
+li > a:only-child:after { content: ''; }
+
+
+/* Media Queries
+--------------------------------------------- */
+
+@media all and (max-width : 768px) {
+
+	#logo {
+		display: block;
+		padding: 0;
+		width: 100%;
+		text-align: center;
+		float: none;
+	}
+
+	nav {
+		margin: 0;
+	}
+
+	/* Hide the navigation menu by default */
+	/* Also hide the  */
+	.toggle + a,
+	.menu {
+		display: none;
+	}
+
+	/* Stylinf the toggle lable */
+	.toggle {
+		display: block;
+		background-color: #254441;
+		padding:14px 20px;	
+		color:#FFF;
+		font-size:17px;
+		text-decoration:none;
+		border:none;
+	}
+
+	.toggle:hover {
+		background-color: #000000;
+	}
+
+	/* Display Dropdown when clicked on Parent Lable */
+	[id^=drop]:checked + ul {
+		display: block;
+	}
+
+	/* Change menu item's width to 100% */
+	nav ul li {
+		display: block;
+		width: 100%;
+		}
+
+	nav ul ul .toggle,
+	nav ul ul a {
+		padding: 0 40px;
+	}
+
+	nav ul ul ul a {
+		padding: 0 80px;
+	}
+
+	nav a:hover,
+ 	nav ul ul ul a {
+		background-color: #000000;
+	}
+  
+	nav ul li ul li .toggle,
+	nav ul ul a,
+  nav ul ul ul a{
+		padding:14px 20px;	
+		color:#FFF;
+		font-size:17px; 
+	}
+  
+  
+	nav ul li ul li .toggle,
+	nav ul ul a {
+		background-color: #212121; 
+	}
+
+	/* Hide Dropdowns by Default */
+	nav ul ul {
+		float: none;
+		position:static;
+		color: #ffffff;
+		/* has to be the same number as the "line-height" of "nav a" */
+	}
+		
+	/* Hide menus on hover */
+	nav ul ul li:hover > ul,
+	nav ul li:hover > ul {
+		display: none;
+	}
+		
+	/* Fisrt Tier Dropdown */
+	nav ul ul li {
+		display: block;
+		width: 100%;
+	}
+
+	nav ul ul ul li {
+		position: static;
+	
+
+	}
+
+}
+
+@media all and (max-width : 330px) {
+
+	nav ul li {
+		display:block;
+		width: 94%;
+	}
+
+}
+/* RESPONSIVIDADE MOBILE */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+    overflow-x: hidden;
+  }
+
+  /* Navbar empilhada */
+  nav {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 0;
+  }
+
+  /* Logo menor e centralizada */
+  .logo {
+    width: 156px;     /* tamanho fixo mais controlado */
+    max-width: 160px; 
+    margin: 0 auto 10px auto; 
+    display: block;
+
+
+  }
+
+  /* Menu centralizado e em coluna */
+  .menu-central ul,
+  .menu-direito ul {
+    flex-direction: row;
+    align-items: center;
+    gap: 13px;
+    padding: 0;
+    margin: -5px ;
+
+  }
+
+  .menu-central ul li a,
+  .menu-direito ul li a {
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+  }
+
+  /* Ajustando hero */
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    margin-top: 10px;
+  }
+
+  .hero-conteudo {
+    margin: 0;
+    align-items: center;
+  }
+
+  .text-base {
+    font-size: 14px;
+    margin: 20px 0 0 0; /* centraliza melhor no mobile */
+    text-align: center;
+  }
+
+  .textsetor1, .textsetor2, .textsetor3 {
+    margin: 15px 0;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  /* Produtos em coluna */
+  .clotheswoman, .clothesman, .clotheskids {
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .produto, .produto2, .produto3 {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .produto h5, .produto2 h5, .produto3 h5 {
+    font-size: 14px;
+  }
+  hr{
+  visibility: hidden; /*tira a linha*/
+  }
+}
+
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <span><img src="imagens/logo sem fundo.png" class="logo"/></span> <!--- Logo -->
+<!--menu-->
+    <label for="drop" class="toggle">Menu</label>
+   <input type="checkbox" id="drop" />
+   <ul class="menu">
+   <li><a href="index.html">Home</a></li>
+    <li>
+    <a href="#">instagram</a>
+    <input type="checkbox" id="drop-1"/>
+      <ul>
+              <li><a href="https://www.instagram.com/madisonversalit/">Madison Versalit</a></li>
+      </ul>
+      </li>
+      <li>
+                <a href="registro.html">Registro</a>
+                <li id="loginBtn"><a href="index2.html">Login</a></li>
+            </ul>
+                 <li id="userInfo" style="display: none;">
+        Olá, <span id="username"></span>!
+        <a href="#" onclick="logout(); return false;">Sairㅤㅤㅤㅤㅤㅤ</a>
+       
+    </li>
+  </nav>
+
+<a href="ia.html" 
+  class="chat-opener"
+  id="chatOpener"
+  aria-label="Abrir chat"
+  title="Abrir chat"
+>
+  <span class="chat-opener__icon" aria-hidden="true">
+    <!-- icone chat madison -->
+    <img src="imagens/logo sem fundo.png" alt="">
+  </span>
+  <span class="chat-opener__label">Madison IA</span>
+</a>
+</header>
+
+<section class="hero">
+  <header class="hero-conteudo">			
+    <p class="text-base">A moda que você procura,<br> O preço que você sonha.<br></p>  
+    <a href="#colecao" type="button" class="btncolecao">Ver coleção</a>
+    
+  </header> 
+  <img src="video/Dark Green Waves All Business Linktree Background.gif" class="gif">
+
+</section>
+<!-- PRODUTOS FEMININOS -->
+<section class="clotheswoman"> 	
+  <div class="produto" data-nome="Vestido curto azul" data-preco="240,00" id="colecao">
+    <img src="imagens/feminino/bluedress.jpg" alt="bluedress">
+    <h5>Vestido curto azul, tecido leve e acinturado</h5>
+    <h6 class="valores">Valor: R$ 240,00</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Vestido longo verde" data-preco="129,90">
+    <img src="imagens/feminino/greendress.jpg" alt="greendress">
+    <h5>Vestido longo verde, tecido leve e acinturado com fenda</h5>
+     <h6 class="valores">Valor: R$ 129,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Vestido longo branco" data-preco="199,90">
+    <img src="imagens/feminino/whitedress.jpg" alt="whitedress">
+    <h5>Vestido longo branco, acinturado com decote nas costas</h5>
+    <h6 class="valores">Valor: R$ 199,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Vestido longo amarelo" data-preco="108,99">
+    <img src="imagens/feminino/yellowdress.jpg" alt="yellowdress">
+    <h5>Vestido longo amarelo, tecido leve com manga curta</h5>
+    <h6 class="valores">Valor: R$ 108,99</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+</section>
+
+<!-- PRODUTOS MASCULINOS -->
+<section class="clothesman">
+  <div class="produto" data-nome="Conjunto masculino bege" data-preco="89.90">
+    <img src="imagens/masculino/begemasculino.jpg" alt="begemasculino">
+    <h5>Conjunto masculino, blusa branca e calça bege</h5>
+    <h6 class="valores">Valor: R$ 89,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Kit masculino verde" data-preco="119.90">
+    <img src="imagens/masculino/masculinokit.jpg" alt="masculinokit">
+    <h5>Blusa branca, calça verde e bolsa</h5>
+    <h6 class="valores">Valor: R$ 119,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Conjunto streetwear branco" data-preco="139.90">
+    <img src="imagens/masculino/streetwear.jpg" alt="streetwear">
+    <h5>Conjunto masculino inverno, moletom branco e calça cinza</h5>
+    <h6 class="valores">Valor: R$ 139,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Conjunto streetwear marrom" data-preco="99.90">
+    <img src="imagens/masculino/streetwear2.jpg" alt="streetwear2">
+    <h5>Conjunto masculino streetwear, blusa marrom e short bege</h5>
+    <h6 class="valores">Valor: R$ 99,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+</section>
+
+<!-- PRODUTOS KIDS -->
+<section class="clotheskids">
+  <div class="produto" data-nome="Conjunto bege kids cropped" data-preco="59.90">
+    <img src="imagens/kids/begegirl.jpg" alt="begegirl">
+    <h5>Conjunto bege kids, calça jeans e cropped moletom</h5>
+    <h6 class="valores">Valor: R$ 59,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Conjunto bege kids short" data-preco="49.90">
+    <img src="imagens/kids/begekids.jpg" alt="begekids">
+    <h5>Conjunto bege kids, short bege e blusa de gola</h5>
+    <h6 class="valores">Valor: R$ 49,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Conjunto verde kids" data-preco="69.90">
+    <img src="imagens/kids/boygreenlook.jpg" alt="boygreenlook">
+    <h5>Conjunto verde kids, calça jeans verde e blusa quadriculada</h5>
+    <h6 class="valores">Valor: R$ 69,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+  <div class="produto" data-nome="Vestido verde kids" data-preco="54.90">
+    <img src="imagens/kids/greengirl.jpg" alt="greengirl">
+    <h5>Vestido verde kids com bolsa marrom</h5>
+    <h6 class="valores">Valor: R$ 54,90</h6>
+    <button type="button" class="btnComprar">Comprar</button>
+  </div>
+</section>
+ <a href="index.html" class="topo">Voltar ao topo</a>
+
+<script>
+  function precoParaNumero(valor) {
+    const texto = String(valor || "0").trim();
+
+    if (texto.includes(",")) {
+      return Number(texto.replace(/\./g, "").replace(",", "."));
+    }
+
+    return Number(texto);
+  }
+
+  function usuarioAtual() {
+    return {
+      id: localStorage.getItem("usuarioId") || "",
+      nome: localStorage.getItem("nomeUsuario") || "",
+      email: localStorage.getItem("usuarioEmail") || ""
+    };
+  }
+
+  function categoriaDoProduto(produto) {
+    const secao = produto.closest("section");
+
+    if (!secao) return "";
+    if (secao.classList.contains("clotheswoman")) return "Feminino";
+    if (secao.classList.contains("clothesman")) return "Masculino";
+    if (secao.classList.contains("clotheskids")) return "Kids";
+
+    return "";
+  }
+
+  function dadosProduto(produto) {
+    const imagem = produto.querySelector("img");
+    const descricao = produto.querySelector("h5");
+
+    return {
+      nome: produto.getAttribute("data-nome") || "",
+      preco: precoParaNumero(produto.getAttribute("data-preco")),
+      descricao: descricao ? descricao.textContent.trim() : "",
+      imagem: imagem ? imagem.getAttribute("src") : "",
+      categoria: categoriaDoProduto(produto),
+      quantidade: 1
+    };
+  }
+
+  async function enviarJson(url, dados) {
+    const resposta = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dados)
+    });
+    const json = await resposta.json().catch(() => ({}));
+
+    if (!resposta.ok || json.ok === false) {
+      throw new Error(json.erro || "Nao foi possivel salvar no banco.");
+    }
+
+    return json;
+  }
+
+  async function sincronizarProdutos() {
+    const produtos = Array.from(document.querySelectorAll(".produto")).map(dadosProduto);
+
+    try {
+      await enviarJson("sincronizar_produtos.php", { produtos });
+    } catch (erro) {
+      console.warn("Produtos nao sincronizados:", erro.message);
+    }
+  }
+
+  document.querySelectorAll(".btnComprar").forEach(button => {
+    const novoBotao = button.cloneNode(true);
+    button.parentNode.replaceChild(novoBotao, button);
+
+    novoBotao.addEventListener("click", async function() {
+      if (localStorage.getItem("logado") !== "true") {
+        alert("Voce precisa estar logado para comprar!");
+        window.location.href = "index2.html";
+        return;
+      }
+
+      const produto = dadosProduto(this.parentElement);
+
+      try {
+        const resposta = await enviarJson("salvar_carrinho.php", {
+          usuario: usuarioAtual(),
+          produto
+        });
+        produto.item_id = resposta.item_id;
+      } catch (erro) {
+        alert("Nao foi possivel salvar o produto no banco: " + erro.message);
+        return;
+      }
+
+      let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+      carrinho.push(produto);
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+      alert(produto.nome + " foi adicionado ao carrinho!");
+      window.location.href = "carrinho.html?v=3";
+    });
+  });
+
+  window.logout = function() {
+    localStorage.removeItem("logado");
+    localStorage.removeItem("nomeUsuario");
+    localStorage.removeItem("usuarioEmail");
+    localStorage.removeItem("usuarioId");
+    window.location.href = "index.html";
+  };
+
+  sincronizarProdutos();
+</script>
+
+</body>
+</html>

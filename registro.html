@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historico de Compras</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #7a4006e3;
+      color: #fff;
+      margin: 0;
+      padding: 60px 20px;
+    }
+
+    #historico {
+      width: min(760px, 100%);
+      margin: 24px auto;
+      text-align: left;
+    }
+
+    .pedido {
+      border-bottom: 1px solid rgba(255, 255, 255, .25);
+      padding: 18px 0;
+    }
+
+    .pedido h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 4px 0;
+    }
+
+    .Voltar {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #612e09d0;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Historico de Compras</h2>
+  <div id="historico"></div>
+  <a href="index.html" class="Voltar">Voltar</a>
+
+  <script>
+    const container = document.getElementById("historico");
+
+    function usuarioAtual() {
+      return {
+        id: localStorage.getItem("usuarioId") || "",
+        nome: localStorage.getItem("nomeUsuario") || "",
+        email: localStorage.getItem("usuarioEmail") || ""
+      };
+    }
+
+    function moeda(valor) {
+      return Number(valor || 0).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+
+    function formatarData(valor) {
+      if (!valor) return "";
+      const data = new Date(String(valor).replace(" ", "T"));
+
+      if (Number.isNaN(data.getTime())) {
+        return valor;
+      }
+
+      return data.toLocaleString("pt-BR");
+    }
+
+    function mostrarVazio() {
+      container.innerHTML = "<p>Voce ainda nao fez compras.</p>";
+    }
+
+    function mostrarPedidos(pedidos) {
+      container.innerHTML = "";
+
+      if (!pedidos.length) {
+        mostrarVazio();
+        return;
+      }
+
+      pedidos.forEach((pedido, index) => {
+        const div = document.createElement("div");
+        const titulo = document.createElement("h3");
+        const lista = document.createElement("ul");
+        const numero = pedido.id || pedido.pedido_id || index + 1;
+        const total = moeda(pedido.total);
+        const data = formatarData(pedido.data || pedido.data_pedido);
+
+        div.className = "pedido";
+        titulo.textContent = `Pedido #${numero} ${data ? "- " + data : ""} - Total: ${total}`;
+        div.appendChild(titulo);
+
+        if (Array.isArray(pedido.itens) && pedido.itens.length > 0) {
+          pedido.itens.forEach(item => {
+            const li = document.createElement("li");
+            const quantidade = item.quantidade ? `${item.quantidade}x ` : "";
+            li.textContent = `${quantidade}${item.nome} - ${moeda(item.preco)}`;
+            lista.appendChild(li);
+          });
+        } else {
+          const li = document.createElement("li");
+          li.textContent = "Pedido salvo no banco.";
+          lista.appendChild(li);
+        }
+
+        div.appendChild(lista);
+        container.appendChild(div);
+      });
+    }
+
+    function mostrarHistoricoLocal() {
+      const historico = JSON.parse(localStorage.getItem("historico")) || [];
+      const pedidos = historico.map((compra, index) => ({
+        id: compra.id || index + 1,
+        data: compra.data,
+        total: compra.total || (compra.itens || []).reduce((soma, item) => soma + Number(item.preco || 0), 0),
+        itens: compra.itens || []
+      }));
+
+      mostrarPedidos(pedidos);
+      return pedidos.length > 0;
+    }
+
+    async function carregarPedidosDoBanco() {
+      const usuario = usuarioAtual();
+
+      if (!usuario.id && !usuario.email && !usuario.nome) {
+        return false;
+      }
+
+      const params = new URLSearchParams({
+        usuario_id: usuario.id,
+        usuario_nome: usuario.nome,
+        usuario_email: usuario.email
+      });
+
+      const resposta = await fetch("buscar_pedidos.php?v=3&" + params.toString());
+      const json = await resposta.json();
+
+      if (json.ok && Array.isArray(json.pedidos) && json.pedidos.length > 0) {
+        mostrarPedidos(json.pedidos);
+        return true;
+      }
+
+      return false;
+    }
+
+    (async function iniciar() {
+      const temHistoricoLocal = mostrarHistoricoLocal();
+
+      try {
+        const temPedidosBanco = await carregarPedidosDoBanco();
+
+        if (!temPedidosBanco && !temHistoricoLocal) {
+          mostrarVazio();
+        }
+      } catch (erro) {
+        if (!temHistoricoLocal) {
+          container.innerHTML = "<p>Nao foi possivel carregar os pedidos do banco.</p>";
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
