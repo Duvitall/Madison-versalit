@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madison Versalit</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #7a4006e3;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: wheat;
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           MENU / CABEÇALHO
+           ===================================================== */
+
+        header {
+            width: 100%;
+        }
+
+        nav {
+            width: calc(100% - 40px);
+            max-width: 1250px;
+            min-height: 82px;
+            margin: 15px auto 0 auto;
+            padding: 8px 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(65, 34, 5, 0.48);
+            border: 1px solid rgba(207, 175, 69, 0.35);
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+
+            position: relative;
+            z-index: 1000;
+        }
+
+
+        /* LOGO */
+
+     .logo-area {
+        display: flex;
+        align-items: center;
+         flex-shrink: 0;
+         position: absolute;
+         left: 22px;
+         top: -25px;
+}
+        
+
+        .logo {
+            width: 150px;
+            height: auto;
+            display: block;
+            transition: 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.03);
+        }
+
+
+        /* MENU */
+
+        .menu {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 5px; 
+    list-style: none; 
+    margin: 0; 
+    padding: 0;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+    
+
+        .menu > li {
+            position: relative;
+            list-style: none;
+        }
+
+        .menu > li > a {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 10px 14px;
+
+            color: #fff;
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            border-radius: 10px;
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .menu > li > a:hover {
+            background: rgba(207, 175, 69, 0.14);
+            color: #f4d98a;
+            transform: translateY(-1px);
+        }
+
+
+        /* ÍCONES DO MENU */
+
+        .menu-icon {
+            font-size: 17px;
+            line-height: 1;
+        }
+
+
+        /* BOTÃO DE LOGIN / USUÁRIO */
+
+        #loginBtn a {
+            border: 1px solid rgba(207, 175, 69, 0.55);
+            background: rgba(207, 175, 69, 0.10);
+            padding: 9px 15px;
+        }
+
+        #loginBtn a:hover {
+            background: rgba(207, 175, 69, 0.22);
+            color: #fff;
+        }
+
+
+        /* INSTAGRAM */
+
+        .instagram-item > a::after {
+            content: "⌄";
+            font-size: 12px;
+            margin-left: 2px;
+            transition: 0.2s;
+        }
+
+        .instagram-item:hover > a::after {
+            transform: rotate(180deg);
+        }
+
+
+        /* SUBMENU DO INSTAGRAM */
+
+        .submenu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+
+            min-width: 190px;
+
+            display: none;
+
+            list-style: none;
+            padding: 8px;
+
+            background: rgba(55, 28, 4, 0.96);
+            border: 1px solid rgba(207, 175, 69, 0.35);
+            border-radius: 12px;
+
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+
+            backdrop-filter: blur(8px);
+        }
+
+        .instagram-item:hover .submenu {
+            display: block;
+        }
+
+        .submenu li {
+            list-style: none;
+        }
+
+        .submenu a {
+            display: block;
+
+            padding: 9px 12px;
+
+            color: #fff;
+            text-decoration: none;
+
+            font-size: 13px;
+            border-radius: 8px;
+
+            transition: 0.2s;
+        }
+
+        .submenu a:hover {
+            background: rgba(207, 175, 69, 0.15);
+            color: #f4d98a;
+        }
+
+
+        /* BOTÃO MENU MOBILE */
+
+        .toggle {
+            display: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+
+            padding: 9px 14px;
+
+            border: 1px solid rgba(207, 175, 69, 0.45);
+            border-radius: 10px;
+
+            background: rgba(207, 175, 69, 0.10);
+
+            cursor: pointer;
+        }
+
+        #drop {
+            display: none;
+        }
+
+
+        /* =====================================================
+           HERO
+           ===================================================== */
+
+        .hero {
+            max-width: 1120px;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 4rem;
+
+            padding: 1rem 2rem;
+            margin: auto;
+        }
+
+        .hero-conteudo {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .text-base {
+            font-size: 19px;
+            font-family: "Poppins", sans-serif;
+            line-height: 1.4;
+            margin-left: 40px;
+            margin-top: 20%;
+            
+        }
+
+        .textsetor1,
+        .textsetor2,
+        .textsetor3 {
+            font-family: Arial;
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 20px;
+        }
+
+
+        /* =====================================================
+           PRODUTOS
+           ===================================================== */
+
+        .clotheswoman,
+        .clothesman,
+        .clotheskids {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            margin: 50px auto;
+            max-width: 1200px;
+        }
+
+        .produto,
+        .produto2,
+        .produto3 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+
+            width: 260px;
+
+            background-color: #F5F5DC;
+
+            padding: 15px;
+
+            border-radius: 8px;
+        }
+
+        .produto img,
+        .produto2 img,
+        .produto3 img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .produto h5,
+        .produto2 h5,
+        .produto3 h5 {
+            text-align: center;
+            margin: 15px 0;
+
+            color: #6F4E37;
+            font-size: 15px;
+        }
+
+        .produto button,
+        .produto2 button,
+        .produto3 button {
+            padding: 8px 12px;
+
+            background-color: #612e09d0;
+
+            border: none;
+            border-radius: 5px;
+
+            cursor: pointer;
+            margin-top: 10px;
+
+            transition: 0.3s;
+
+            color: #fff;
+        }
+
+        .produto button:hover,
+        .produto2 button:hover,
+        .produto3 button:hover {
+            background-color: #a1663bd0;
+            border: 2px solid rgba(255, 255, 255, .2);
+            color: #fff;
+        }
+
+
+        /* =====================================================
+           OUTROS ELEMENTOS
+           ===================================================== */
+
+        .topo {
+            background-color: rgba(155, 84, 2, 0.85);
+            border: 2px solid rgba(255, 255, 255, .2);
+            color: #fff;
+        }
+
+        .topo:hover {
+            background-color: rgba(83, 58, 20, 0.897);
+            border: 2px solid rgba(255, 255, 255, .2);
+            color: #fff;
+            transition: 0.5s;
+        }
+
+        .valores {
+            color: #6F4E37;
+            font-weight: bold;
+            font-size: 16px;
+            font-style: italic;
+            margin-top: -6%;
+        }
+
+        .gif {
+            width: 590px;
+            height: auto;
+            margin-top: 60px;
+            line-height: normal;
+            animation-iteration-count: infinite;
+        }
+
+        .btncolecao {
+            padding: 10px 20px;
+
+            background-color: #cfaf45;
+
+            border: none;
+            border-radius: 25px;
+
+            cursor: pointer;
+
+            color: #fff;
+            font-size: 16px;
+
+            transition: 0.3s;
+
+            margin-left: 15px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btncolecao:hover {
+            background-color: #7235099c;
+            border: 2px solid rgba(255, 255, 255, .2);
+            color: #fec27d;
+        }
+
+
+        /* =====================================================
+           MADISON IA
+           ===================================================== */
+
+        .chat-opener {
+            position: fixed;
+            right: 16px;
+            bottom: 20px;
+
+            z-index: 1000;
+
+            display: inline-flex;
+            align-items: center;
+
+            gap: 8px;
+
+            background: #1d1a21;
+
+            color: #f2f2f2;
+
+            border: 1px solid #3a3a3a;
+
+            box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+
+            border-radius: 6px;
+
+            padding: 5px 10px;
+
+            min-width: 108px;
+            height: 38px;
+
+            cursor: pointer;
+
+            font-family: system-ui, sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+
+            text-decoration: none;
+
+            transition:
+                transform .12s ease,
+                box-shadow .12s ease,
+                background .12s ease;
+        }
+
+        .chat-opener:hover {
+            opacity: 0.97;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        .chat-opener:focus {
+            outline: 2px solid rgba(207,175,69,0.45);
+            outline-offset: 2px;
+        }
+
+        .chat-opener__icon {
+            width: 30px;
+            height: 30px;
+
+            flex: 0 0 30px;
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+        }
+
+        .chat-opener__icon img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            display: block;
+
+            transform: translateY(2px) scale(1.9);
+
+            filter:
+                drop-shadow(0 1px 2px rgba(0,0,0,0.55))
+                drop-shadow(0 0 3px rgba(207,175,69,0.28));
+        }
+
+        .chat-opener__label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+
+        /* =====================================================
+           RESPONSIVIDADE
+           ===================================================== */
+
+        @media (max-width: 768px) {
+
+            body {
+                padding: 8px;
+            }
+
+            nav {
+                width: 100%;
+
+                min-height: auto;
+
+                padding: 10px 15px;
+
+                flex-wrap: wrap;
+
+                border-radius: 15px;
+
+                gap: 8px;
+            }
+
+            .logo-area {
+                flex: 1;
+            }
+
+            .logo {
+                width: 135px;
+            }
+
+            .toggle {
+                display: block;
+            }
+
+            .menu {
+                display: none;
+
+                width: 100%;
+
+                flex-direction: column;
+                align-items: stretch;
+
+                gap: 3px;
+
+                padding-top: 8px;
+            }
+
+            #drop:checked + .menu {
+                display: flex;
+            }
+
+            .menu > li {
+                width: 100%;
+            }
+
+            .menu > li > a {
+                justify-content: center;
+
+                width: 100%;
+
+                padding: 11px;
+
+                font-size: 14px;
+            }
+
+            #loginBtn a {
+                justify-content: center;
+            }
+
+            .submenu {
+                position: static;
+
+                width: 100%;
+
+                margin-top: 3px;
+
+                background: rgba(40, 20, 3, 0.7);
+
+                box-shadow: none;
+            }
+
+            .instagram-item:hover .submenu {
+                display: block;
+            }
+
+
+            /* HERO MOBILE */
+
+            .hero {
+                flex-direction: column;
+
+                align-items: center;
+
+                text-align: center;
+
+                gap: 1rem;
+
+                margin-top: 10px;
+
+                padding: 1rem;
+            }
+
+            .hero-conteudo {
+                margin: 0;
+                align-items: center;
+            }
+
+            .text-base {
+                font-size: 14px;
+
+                margin: 20px 0 0 0;
+
+                text-align: center;
+            }
+
+            .textsetor1,
+            .textsetor2,
+            .textsetor3 {
+                margin: 15px 0;
+
+                font-size: 16px;
+
+                text-align: center;
+            }
+
+            .gif {
+                width: 90%;
+                max-width: 450px;
+
+                margin-top: 20px;
+            }
+
+
+            /* PRODUTOS MOBILE */
+
+            .clotheswoman,
+            .clothesman,
+            .clotheskids {
+                flex-direction: column;
+
+                margin-top: 20px;
+
+                gap: 20px;
+
+                align-items: center;
+            }
+
+            .produto,
+            .produto2,
+            .produto3 {
+                width: 90%;
+                max-width: 350px;
+            }
+
+            .produto h5,
+            .produto2 h5,
+            .produto3 h5 {
+                font-size: 14px;
+            }
+
+            hr {
+                visibility: hidden;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            .logo {
+                width: 120px;
+            }
+
+            .chat-opener {
+                right: 10px;
+                bottom: 14px;
+
+                min-width: 95px;
+                height: 34px;
+
+                padding: 4px 8px;
+
+                font-size: 12px;
+
+                gap: 6px;
+            }
+
+            .chat-opener__icon {
+                width: 24px;
+                height: 24px;
+
+                flex-basis: 24px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<header>
+
+    <nav>
+
+        <!-- LOGO -->
+        <a href="index.html" class="logo-area">
+            <img
+                src="imagens/logo sem fundo.png"
+                class="logo"
+                alt="Madison Versalit"
+            >
+        </a>
+
+
+        <!-- BOTÃO MOBILE -->
+        <label for="drop" class="toggle">
+            ☰ Menu
+        </label>
+
+        <input type="checkbox" id="drop">
+
+
+        <!-- MENU -->
+        <ul class="menu">
+
+            <!-- HOME -->
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+
+
+            <!-- INSTAGRAM -->
+            <li class="instagram-item">
+
+                <a href="#">
+                    <span class="menu-icon">◎</span>
+                    Instagram
+                </a>
+
+                <ul class="submenu">
+
+                    <li>
+                        <a
+                            href="https://www.instagram.com/madisonversalit/"
+                            target="_blank"
+                        >
+                            Madison Versalit
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+
+            <!-- REGISTRO -->
+            <li>
+                <a href="registro.html">
+                    <span class="menu-icon">▤</span>
+                    Registro
+                </a>
+            </li>
+
+
+            <!-- CARRINHO -->
+            <li>
+                <a href="carrinho.html">
+                    <span class="menu-icon">🛒</span>
+                    Carrinho
+                </a>
+            </li>
+
+
+            <!-- LOGIN / USUÁRIO -->
+            <li id="loginBtn">
+
+                <a href="index2.html">
+                    <span class="menu-icon">♙</span>
+                    Entrar
+                </a>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- MADISON IA -->
+    <a
+        href="ia.html"
+        class="chat-opener"
+        id="chatOpener"
+        aria-label="Abrir chat"
+        title="Abrir chat"
+    >
+
+        <span class="chat-opener__icon" aria-hidden="true">
+
+            <img
+                src="imagens/logo sem fundo.png"
+                alt=""
+            >
+
+        </span>
+
+        <span class="chat-opener__label">
+            Madison IA
+        </span>
+
+    </a>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<section class="hero">
+
+    <header class="hero-conteudo">
+
+        <p class="text-base">
+            A moda que você procura,<br>
+            O preço que você sonha.
+        </p>
+
+        <a
+            href="#produtos-loja"
+            class="btncolecao"
+        >
+            Ver coleção
+        </a>
+
+    </header>
+
+
+    <img
+        src="video/Dark Green Waves All Business Linktree Background.gif"
+        class="gif"
+        alt=""
+    >
+
+</section>
+
+
+<!-- =====================================================
+     PRODUTOS CADASTRADOS PELO ADMIN
+     ===================================================== -->
+
+<section id="produtos-loja">
+
+    <div
+        class="clotheswoman"
+        id="produtos-feminino"
+    ></div>
+
+    <div
+        class="clothesman"
+        id="produtos-masculino"
+    ></div>
+
+    <div
+        class="clotheskids"
+        id="produtos-infantil"
+    ></div>
+
+</section>
+
+
+<script>
+
+
+/* =====================================================
+   CONVERTER PREÇO
+   ===================================================== */
+
+function precoParaNumero(valor) {
+
+    const texto = String(valor || "0").trim();
+
+    if (texto.includes(",")) {
+
+        return Number(
+            texto
+                .replace(/\./g, "")
+                .replace(",", ".")
+        );
+
+    }
+
+    return Number(texto);
+}
+
+
+/* =====================================================
+   USUÁRIO ATUAL
+   ===================================================== */
+
+function usuarioAtual() {
+
+    return {
+
+        id:
+            localStorage.getItem("usuarioId") || "",
+
+        nome:
+            localStorage.getItem("nomeUsuario") || "",
+
+        email:
+            localStorage.getItem("usuarioEmail") || ""
+
+    };
+
+}
+
+
+/* =====================================================
+   ENVIAR JSON
+   ===================================================== */
+
+async function enviarJson(url, dados) {
+
+    const resposta = await fetch(url, {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(dados)
+
+    });
+
+
+    const json =
+        await resposta
+            .json()
+            .catch(() => ({}));
+
+
+    if (!resposta.ok || json.ok === false) {
+
+        throw new Error(
+
+            json.erro ||
+            "Nao foi possivel salvar no banco."
+
+        );
+
+    }
+
+
+    return json;
+
+}
+
+
+/* =====================================================
+   CARREGAR PRODUTOS DO BANCO
+   ===================================================== */
+
+async function carregarProdutos() {
+
+    try {
+
+        const resposta =
+            await fetch("listar_produtos.php");
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                "Erro ao carregar os produtos."
+            );
+
+        }
+
+
+        const dados =
+            await resposta.json();
+
+
+        console.log(
+            "PRODUTOS RECEBIDOS:",
+            dados
+        );
+
+
+        if (!dados.ok) {
+
+            throw new Error(
+                dados.erro ||
+                "Erro ao carregar produtos."
+            );
+
+        }
+
+
+        const produtos =
+            dados.produtos;
+
+
+        const feminino =
+            document.getElementById(
+                "produtos-feminino"
+            );
+
+
+        const masculino =
+            document.getElementById(
+                "produtos-masculino"
+            );
+
+
+        const infantil =
+            document.getElementById(
+                "produtos-infantil"
+            );
+
+
+        if (
+            !feminino ||
+            !masculino ||
+            !infantil
+        ) {
+
+            console.error(
+                "Os containers dos produtos nao foram encontrados."
+            );
+
+            return;
+
+        }
+
+
+        feminino.innerHTML = "";
+        masculino.innerHTML = "";
+        infantil.innerHTML = "";
+
+
+        produtos.forEach(produto => {
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "produto";
+
+
+            card.setAttribute(
+                "data-nome",
+                produto.nome || ""
+            );
+
+
+            card.setAttribute(
+                "data-preco",
+                produto.preco || 0
+            );
+
+
+            card.innerHTML = `
+
+                <img
+                    src="${produto.imagem || ""}"
+                    alt="${produto.nome || ""}"
+                >
+
+                <h5>
+                    ${produto.descricao || produto.nome || ""}
+                </h5>
+
+                <h6 class="valores">
+
+                    Valor: R$
+
+                    ${Number(produto.preco || 0)
+                        .toFixed(2)
+                        .replace(".", ",")}
+
+                </h6>
+
+                <button
+                    type="button"
+                    class="btnComprar"
+                >
+                    Comprar
+                </button>
+
+            `;
+
+
+            const categoria =
+                (produto.categoria || "")
+                .toLowerCase()
+                .trim();
+
+
+            if (categoria === "feminino") {
+
+                feminino.appendChild(card);
+
+            }
+
+            else if (categoria === "masculino") {
+
+                masculino.appendChild(card);
+
+            }
+
+            else if (
+                categoria === "infantil" ||
+                categoria === "kids"
+            ) {
+
+                infantil.appendChild(card);
+
+            }
+
+            else {
+
+                feminino.appendChild(card);
+
+            }
+
+        });
+
+
+        ativarBotoesComprar();
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao carregar produtos:",
+            erro
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   BOTÃO COMPRAR
+   ===================================================== */
+
+function ativarBotoesComprar() {
+
+    document
+        .querySelectorAll(".btnComprar")
+        .forEach(button => {
+
+
+            button.addEventListener(
+                "click",
+                async function() {
+
+
+                    /* VERIFICA LOGIN */
+
+                    if (
+                        localStorage.getItem("logado")
+                        !== "true"
+                    ) {
+
+                        alert(
+                            "Voce precisa estar logado para comprar!"
+                        );
+
+
+                        window.location.href =
+                            "index2.html";
+
+
+                        return;
+
+                    }
+
+
+                    const card =
+                        this.closest(".produto");
+
+
+                    if (!card) {
+                        return;
+                    }
+
+
+                    const imagem =
+                        card.querySelector("img");
+
+
+                    const descricao =
+                        card.querySelector("h5");
+
+
+                    const produto = {
+
+                        nome:
+                            card.getAttribute(
+                                "data-nome"
+                            ) || "",
+
+
+                        preco:
+                            precoParaNumero(
+                                card.getAttribute(
+                                    "data-preco"
+                                )
+                            ),
+
+
+                        descricao:
+                            descricao
+                                ? descricao.textContent.trim()
+                                : "",
+
+
+                        imagem:
+                            imagem
+                                ? imagem.getAttribute("src")
+                                : "",
+
+
+                        quantidade: 1
+
+                    };
+
+
+                    /* SALVA NO BANCO */
+
+                    try {
+
+                        const resposta =
+                            await enviarJson(
+                                "salvar_carrinho.php",
+                                {
+
+                                    usuario:
+                                        usuarioAtual(),
+
+                                    produto:
+                                        produto
+
+                                }
+                            );
+
+
+                        produto.item_id =
+                            resposta.item_id;
+
+
+                    } catch (erro) {
+
+                        alert(
+
+                            "Nao foi possivel salvar o produto no banco: "
+                            +
+                            erro.message
+
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* SALVA TAMBÉM NO CARRINHO LOCAL */
+
+                    let carrinho =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "carrinho"
+                            )
+                        ) || [];
+
+
+                    carrinho.push(produto);
+
+
+                    localStorage.setItem(
+                        "carrinho",
+                        JSON.stringify(carrinho)
+                    );
+
+
+                    alert(
+
+                        produto.nome +
+                        " foi adicionado ao carrinho!"
+
+                    );
+
+
+                    window.location.href =
+                        "carrinho.html?v=3";
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
+
+window.logout = function() {
+
+    localStorage.removeItem("logado");
+
+    localStorage.removeItem("nomeUsuario");
+
+    localStorage.removeItem("usuarioEmail");
+
+    localStorage.removeItem("usuarioId");
+
+
+    window.location.href =
+        "index.html";
+
+};
+
+
+/* =====================================================
+   ATUALIZAR BOTÃO DE LOGIN / USUÁRIO
+   ===================================================== */
+
+function atualizarLogin() {
+
+    const loginBtn =
+        document.getElementById("loginBtn");
+
+
+    if (!loginBtn) {
+        return;
+    }
+
+
+    const logado =
+        localStorage.getItem("logado")
+        === "true";
+
+
+    const nome =
+        localStorage.getItem("nomeUsuario")
+        || "usuário";
+
+
+    if (logado) {
+
+        loginBtn.innerHTML = `
+
+            <a
+                href="#"
+                onclick="logout(); return false;"
+            >
+
+                <span class="menu-icon">♙</span>
+
+                Olá, ${nome} | Sair
+
+            </a>
+
+        `;
+
+    }
+
+    else {
+
+        loginBtn.innerHTML = `
+
+            <a href="index2.html">
+
+                <span class="menu-icon">♙</span>
+
+                Entrar
+
+            </a>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   INICIAR
+   ===================================================== */
+
+atualizarLogin();
+
+carregarProdutos();
+
+</script>
+
+</body>
+</html>
